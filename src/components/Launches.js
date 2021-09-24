@@ -5,19 +5,22 @@ import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { fetchData } from "../redux/actions/flightActions";
 import LaunchesList from "./LaunchesList";
+import SearchSection from "./SearchSection";
 
 const Launches = () => {
   const dispatch = useDispatch();
   const data = useSelector((state) => state.allData.data);
   useEffect(() => {
     dispatch(fetchData());
-  }, []);
-  console.log(data);
+  }, [dispatch]);
   return (
-    <Container>
+    <Container className="my-5">
+      <div className="search-box">
+        <SearchSection></SearchSection>
+      </div>
       <Row>
-        {data.map((data) => (
-          <LaunchesList data={data} key={data.flight_number}></LaunchesList>
+        {data.map((data, index) => (
+          <LaunchesList data={data} key={index}></LaunchesList>
         ))}
       </Row>
     </Container>

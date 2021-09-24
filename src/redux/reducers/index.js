@@ -1,6 +1,7 @@
 import { combineReducers } from "redux";
-import { launchesReducer } from "./rokcetReducers";
+import { launchesReducer, searchReducers } from "./rokcetReducers";
 
 export const reducers = combineReducers({
   allData: launchesReducer,
+  data: searchReducers,
 });
