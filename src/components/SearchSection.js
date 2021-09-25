@@ -3,19 +3,26 @@ import { Form } from "react-bootstrap";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { searchData } from "../redux/actions/flightActions";
+import { searchData } from "../redux/reducers/rocketSlice";
+
 const SearchSection = () => {
-  const result = useSelector((state) => state.data.data);
+  const result = useSelector((state) => state.allData.search_result);
   const dispatch = useDispatch();
   const [searchTerm, setSearchTerm] = useState("");
-  const _search = () => {};
+
+  const _search = (e) => {
+    e.preventDefault();
+  };
+
   useEffect(() => {
     dispatch(searchData(searchTerm));
   }, [searchTerm]);
+
   console.log(result);
+
   return (
     <div>
-      <Form className="d-flex justify-content-center">
+      <Form onSubmit={_search} className="d-flex justify-content-center">
         <Form.Group
           className="mb-3 me-2"
           controlId="search"
